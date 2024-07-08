@@ -4,6 +4,7 @@
 #include <vector>
 #include <map>
 #include <regex>
+#include <memory>
 
 class SystemData;
 class FileData;

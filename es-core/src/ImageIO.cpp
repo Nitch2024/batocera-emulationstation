@@ -1,5 +1,6 @@
 #include "ImageIO.h"
 
+#include <algorithm>
 #include "Log.h"
 #include <FreeImage.h>
 #include <string.h>

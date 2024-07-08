@@ -14,6 +14,9 @@
 #include <sys/wait.h>
 #endif
 
+#include <io.h>
+#include <BaseTsd.h>
+typedef SSIZE_T ssize_t;
 #include <fcntl.h>
 #include "Window.h"
 #include "utils/FileSystemUtil.h"
