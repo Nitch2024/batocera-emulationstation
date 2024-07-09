@@ -173,7 +173,8 @@ bool TextureData::initImageFromMemory(const unsigned char* fileData, size_t leng
 	size_t width, height;
 	Vector2i size;
 	Vector2i physicalSize;
-	unsigned char* imageRGBA = ImageIO::loadFromMemoryRGBA32((const unsigned char*)(fileData), length, width, height, &maxSize, &physicalSize, &size, subImageIndex);
+
+	unsigned char* imageRGBA = ImageIO::loadFromMemoryRGBA32((const unsigned char*)(fileData), length, width, height, &maxSize, &physicalSize, &size, subImageIndex, Settings::getInstance()->getBool("ForceFiltering") );
 	
 	mPhysicalSize = Vector2f(physicalSize.x(), physicalSize.y());
 	mSize = size.empty() ? physicalSize : size;

@@ -17,7 +17,7 @@
 
 const MaxSizeInfo MaxSizeInfo::Empty;
 
-unsigned char* ImageIO::loadFromMemoryRGBA32(const unsigned char * data, const size_t size, size_t & width, size_t & height, MaxSizeInfo* maxSize, Vector2i* baseSize, Vector2i* packedSize, int subImageIndex)
+unsigned char* ImageIO::loadFromMemoryRGBA32(const unsigned char * data, const size_t size, size_t & width, size_t & height, MaxSizeInfo* maxSize, Vector2i* baseSize, Vector2i* packedSize, int subImageIndex, bool filter )
 {
 	LOG(LogDebug) << "ImageIO::loadFromMemoryRGBA32";
 
@@ -100,7 +100,7 @@ unsigned char* ImageIO::loadFromMemoryRGBA32(const unsigned char * data, const s
 						{
 							LOG(LogDebug) << "ImageIO : rescaling image from " << std::string(std::to_string(width) + "x" + std::to_string(height)).c_str() << " to " << std::string(std::to_string(sz.x()) + "x" + std::to_string(sz.y())).c_str();
 
-							FIBITMAP* imageRescaled = FreeImage_Rescale(fiBitmap, sz.x(), sz.y(), FILTER_BOX);
+							FIBITMAP* imageRescaled = FreeImage_Rescale(fiBitmap, sz.x(), sz.y(), filter ? FILTER_LANCZOS3 : FILTER_BOX );
 
 							if (fiMultiBitmap != nullptr)
 							{

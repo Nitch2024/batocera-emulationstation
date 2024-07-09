@@ -12,6 +12,8 @@
 #include "ThemeData.h"
 #include <SDL_timer.h>
 #include "AudioManager.h"
+// Noob2024
+#include <SDL_opengl.h>
 
 #ifdef WIN32
 #include <codecvt>
@@ -531,6 +533,11 @@ void VideoVlcComponent::render(const Transform4x4f& parentTrans)
 	if (mTexture->bind())
 	{
 		Renderer::setMatrix(trans);
+		// NOOB2024
+		if (Settings::getInstance()->getBool("ForceFiltering"))
+		{
+			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		}
 
 		beginCustomClipRect();
 

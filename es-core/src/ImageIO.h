@@ -7,7 +7,6 @@
 #include "math/Vector2f.h"
 #include "math/Vector2i.h"
 
-
 class MaxSizeInfo
 {
 public:
@@ -39,7 +38,7 @@ private:
 class ImageIO
 {
 public:
-	static unsigned char*  loadFromMemoryRGBA32(const unsigned char * data, const size_t size, size_t & width, size_t & height, MaxSizeInfo* maxSize = nullptr, Vector2i* baseSize = nullptr, Vector2i* packedSize = nullptr, int subImageIndex = -1);
+	static unsigned char*  loadFromMemoryRGBA32(const unsigned char * data, const size_t size, size_t & width, size_t & height, MaxSizeInfo* maxSize = nullptr, Vector2i* baseSize = nullptr, Vector2i* packedSize = nullptr, int subImageIndex = -1, bool filter = false );
 	static void flipPixelsVert(unsigned char* imagePx, const size_t& width, const size_t& height);
 	
 	static Vector2f getPictureMinSize(Vector2f imageSize, Vector2f maxSize);

@@ -9,6 +9,8 @@
 #include "playlists/AnimatedGifPlaylist.h"
 #include "playlists/M3uPlaylist.h"
 #include "utils/StringUtil.h"
+// Noob2024
+#include <SDL_opengl.h>
 
 Vector2i ImageComponent::getTextureSize() const
 {
@@ -673,6 +675,12 @@ void ImageComponent::render(const Transform4x4f& parentTrans)
 			return;
 		}
 
+		// NOOB2024
+		if (Settings::getInstance()->getBool("ForceFiltering"))
+		{
+			glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+		}
+		
 		beginCustomClipRect();
 
 		// Align left

@@ -716,6 +716,11 @@ void GuiMenu::openDeveloperSettings()
 	s->addSwitch(_("SHOW FRAMERATE"), _("Also turns on the emulator's native FPS counter, if available."), "DrawFramerate", true, nullptr);
 	s->addSwitch(_("VSYNC"), "VSync", true, [] { Renderer::setSwapInterval(); });
 
+	//	NOOB2024
+	s->addSwitch(_("DISABLE CASE INSENSITIVE EXTENSIONS"), "CaseSensitiveExtensions", false, nullptr );
+	s->addSwitch(_("FORCE FILTERING"), "ForceFiltering", false, nullptr);
+	s->addSwitch(_("VSYNC"), "VSync", true, [] { Renderer::setSwapInterval(); });
+
 #ifdef BATOCERA
 	// overscan
 	auto overscan_enabled = std::make_shared<SwitchComponent>(mWindow);

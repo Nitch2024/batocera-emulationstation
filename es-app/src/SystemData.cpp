@@ -264,7 +264,12 @@ void SystemData::populateFolder(FolderData* folder, std::unordered_map<std::stri
 
 		//this is a little complicated because we allow a list of extensions to be defined (delimited with a space)
 		//we first get the extension of the file itself:
-		extension = Utils::String::toLower(Utils::FileSystem::getExtension(filePath));
+		// NOOB2024
+		extension = Utils::FileSystem::getExtension(filePath);
+		if (!Settings::getInstance()->getBool("CaseSensitiveExtensions"))
+		{
+			extension = Utils::String::toLower(extension);
+		}
 
 		//fyi, folders *can* also match the extension and be added as games - this is mostly just to support higan
 		//see issue #75: https://github.com/Aloshi/EmulationStation/issues/75
@@ -1033,7 +1038,12 @@ SystemData* SystemData::loadSystem(pugi::xml_node system, bool fullMode)
 	std::set<std::string> extensions;
 	for (auto ext : readList(system.child("extension").text().get()))
 	{
-		std::string extlow = Utils::String::toLower(ext);
+		std::string extlow = ext;
+		// NOOB2024
+		if ( !Settings::getInstance()->getBool("CaseSensitiveExtensions") )
+		{
+			Utils::String::toLower(ext);
+		}
 		if (extensions.find(extlow) == extensions.cend())
 			extensions.insert(extlow);
 	}
